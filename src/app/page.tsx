@@ -54,9 +54,8 @@ export default function Home() {
       <h2>Tanımlanan Barkodlar:</h2>
       <ul>
         {barcodes.map((barcode, index) => {
-          console.log(barcode)
           return (
-            <a href={barcode} target="_blank">
+            <a href={barcode} target="_blank" key={index}>
               <li key={index}>{barcode}</li>
             </a>
           )
