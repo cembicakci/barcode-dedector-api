@@ -8,5 +8,11 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #fff;
+}
+
+@layer components {
+  .btn {
+    @apply rounded-full bg-yellow-400 px-2 py-1 text-sm text-black/80
+  }
 }

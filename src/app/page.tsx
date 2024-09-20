@@ -10,7 +10,7 @@ export default function Home() {
     const startVideo = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: 'environment' } // Arka kamera
+          video: { facingMode: 'environment' }
         });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
@@ -51,17 +51,32 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <video ref={videoRef} autoPlay style={{ width: '100%', height: 'auto' }} />
-      <h2>Tanımlanan Barkodlar: </h2>
-      <ul>
-        {barcodes.map((barcode, index) => {
-          return (
-            <a href={barcode} target="_blank" key={index}>
-              <li key={index}>{barcode}</li>
-            </a>
-          )
-        })}
+    <div style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
+      <video
+        ref={videoRef}
+        autoPlay
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover'
+        }}
+      />
+      <ul
+        style={{
+          position: 'absolute',
+          top: '80%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          color: 'white',
+          textAlign: 'center'
+        }}
+      >
+        {barcodes.map((barcode, index) => (
+          <a href={barcode} target="_blank" rel="noopener noreferrer" key={index}>
+            <li className="btn">Tarayıcıda Aç</li>
+
+          </a>
+        ))}
       </ul>
     </div>
   );
