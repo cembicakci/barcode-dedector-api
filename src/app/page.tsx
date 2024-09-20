@@ -9,7 +9,9 @@ export default function Home() {
   useEffect(() => {
     const startVideo = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment' } // Arka kamera
+        });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
           videoRef.current.play();
@@ -51,7 +53,7 @@ export default function Home() {
   return (
     <div>
       <video ref={videoRef} autoPlay style={{ width: '100%', height: 'auto' }} />
-      <h2>Tanımlanan Barkodlar:</h2>
+      <h2>Tanımlanan Barkodlar: </h2>
       <ul>
         {barcodes.map((barcode, index) => {
           return (
